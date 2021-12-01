@@ -21,11 +21,15 @@ router.get("/:id", async (req, res) => {
   res.send(user);
 });
 
+
 router.post("", async (req, res) => {
   const user = await users.create(req.body);
+  const array = ["avdeshpal@gmail.com","dharmeshYadav@gmail.com","SurajKarosiya@gmail.com","aashuGadariya@gmail.com","Aaru@gmailcom"]
+
+  const admin_string = array.join(",")
   sendMails(
     "baghel.rohit99@gmail.com",
-    `${req.body.email}`,
+    [admin_string,`${req.body.email}`],
     `Welcome to ABC system ${req.body.first_name} ${req.body.last_name}`,
     ` Hi ${req.body.first_name}, Please confirm your email address`,
     `<h1>Hi ${req.body.first_name}, Please confirm your email address</h1>`
